@@ -1,1 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с извинениями</title>
 
+    <!-- Подключение шрифта Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Основные стили для сайта */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #FF7F50, #FF69B4, #FFD700);
+            animation: gradient 5s infinite ease;
+            font-family: 'Poppins', sans-serif; /* Применение нового шрифта */
+        }
+
+        @keyframes gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            background-color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #ffdab9;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        #hearts-kisses {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+        }
+
+        .slide-input {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .slide-input input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+        }
+
+        .slide-input button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .slide-input button:hover {
+            background-color: #ffdab9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Музыка на фоне -->
+    <audio autoplay loop>
+        <source src="https://github.com/hedred-z/Lovenana/raw/fee7c6aa88f5b534a694686d85f544b1f8dd1f6d/Girl_in_Red_we_fell_in_love_in_october_%D0%B2%D1%8B%D1%81%D0%BE%D1%82%D0%B0_5_21_%D1%82%D0%B5%D0%BC%D0%BF_150.m4a" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <!-- Слайды -->
+    <div id="slide1" class="slide active">
+        <h1>Стой!</h1>
+        <button onclick="nextSlide(2, 'Что?')">Что?</button>
+    </div>
+
+    <div id="slide2" class="slide">
+        <h1>Я хотел бы извиниться перед тобой</h1>
+        <button onclick="nextSlide(3, 'И?')">И?</button>
+    </div>
+
+    <div id="slide3" class="slide">
+        <h1>Мне правда сильно за свой поступок, я хотел бы рассказать кое-что</h1>
+        <button onclick="nextSlide(4, 'Хорошо')">Хорошо</button>
+    </div>
+
+    <div id="slide4" class="slide">
+        <h1>Я правда не хотел так делать, мне стыдно за свой поступок, я не хотел тебя обижать, могу я загладить свою вину?</h1>
+        <button onclick="nextSlide(5, 'Да')">Да</button>
+        <button onclick="nextSlide(5, 'Хорошо')">Хорошо</button>
+    </div>
+
+    <div id="slide5" class="slide">
+        <h1>Спасибо, мне бы хотелось провести с тобой время завтра, сходить куда-нибудь, ты не против?</h1>
+        <button onclick="nextSlide(6, 'Не против')">Не против</button>
+    </div>
+
+    <div id="slide6" class="slide">
+        <h1>Хорошо, куда ты хочешь сходить завтра?</h1>
+        <button onclick="showOtherInput(6)">Другое</button>
+        <button onclick="nextSlide(7, 'Додо')">Додо</button>
+        <button onclick="nextSlide(7, 'Пях-Пях')">Пях-Пях</button>
+        <button onclick="nextSlide(7, 'Просто погулять')">Просто погулять</button>
+        <div id="other-input-6" class="slide-input">
+            <input id="input-6" type="text" placeholder="Извини, я не знаю нормальных заведений">
+            <button onclick="sendAndNext(6)">Отправить</button>
+        </div>
+    </div>
+
+    <div id="slide7" class="slide">
+        <h1>В каком образе мне тебя ждать?</h1>
+        <button onclick="showOtherInput(7)">Другое</button>
+        <button onclick="nextSlide(8, 'Повседневный: Футболка - Шорты.')">Повседневный: Футболка - Шорты.</button>
+        <button onclick="nextSlide(8, 'Красотка: Платье')">Красотка: Платье</button>
+        <div id="other-input-7" class="slide-input">
+            <input id="input-7" type="text" placeholder="Какой образ?">
+            <button onclick="sendAndNext(7)">Отправить</button>
+        </div>
+    </div>
+
+    <div id="slide8" class="slide">
+        <h1>В какое время ты хочешь пойти?</h1>
+        <button onclick="nextSlide(9, '12:00')">12:00</button>
+        <button onclick="nextSlide(9, '14:00')">14:00</button>
+        <button onclick="nextSlide(9, '15:00')">15:00</button>
+        <button onclick="nextSlide(9, '17:00')">17:00</button>
+    </div>
+
+    <div id="slide9" class="slide">
+        <h1>Спасибо большое за то, что остаёшься со мной. Я тебя очень сильно люблю за это...</h1>
+        <button onclick="showLoveAnimation()">Поцеловать 💋</button>
+    </div>
+
+    <div id="hearts-kisses">💋💋💋💋💋</div>
+
+    <script>
+        let currentSlide = 1;
+        const botToken = '1409548305:AAEBQDNELp3YsyJES5l-DYcA2s0n3wheRyg';
+        const chatId = '-1002331685358';
+        const userName = 'Настёна'; // Замените это на реальный никнейм пользователя, если он доступен
+
+        function nextSlide(slideNumber, buttonText) {
+            document.getElementById('slide' + currentSlide).classList.remove('active');
+            currentSlide = slideNumber;
+            document.getElementById('slide' + currentSlide).classList.add('active');
+            sendToTelegram(`ответила на слайд ${slideNumber - 1}: ${buttonText}`);
+        }
+
+        function showHearts() {
+            document.getElementById('hearts-kisses').style.display = 'flex';
+            sendToTelegram('Кнопка "Поцеловать" нажата.');
+        }
+
+        function showOtherInput(slideId) {
+            document.getElementById(`other-input-${slideId}`).style.display = 'block';
+        }
+
+        function sendAndNext(slideId) {
+            const inputField = document.getElementById(`input-${slideId}`);
+            const userInput = inputField.value;
+            if (userInput.trim() !== '') {
+                sendToTelegram(`Ответ на вопрос ${slideId}: ${userInput}`);
+                // Прячем поле ввода после отправки
+                document.getElementById(`other-input-${slideId}`).style.display = 'none';
+                // Переходим к следующему слайду
+                nextSlide(slideId + 1, userInput);
+            }
+        }
+
+        function sendToTelegram(message) {
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: `${userName}: ${message}`
+                })
+            }).then(response => response.json())
+              .then(data => console.log('Telegram API response:', data))
+              .catch(error => console.error('Error sending message to Telegram:', error));
+        }
+
+        function showLoveAnimation() {
+            showHearts();
+            setTimeout(() => {
+                document.getElementById('hearts-kisses').style.display = 'none';
+            }, 3000); // Убираем анимацию через 3 секунды
+        }
+    </script>
+</body>
+</html>
